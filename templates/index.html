@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body{
+            text-align: center;
+        }
+        #result{
+            display: inline-block;
+              border-style: solid;
+             }
+        
+    </style>
+    <title>Real-time Speech to Text</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+</head>
+<body >
+    <h1>Real-time Speech to Text</h1>
+
+    <div id="result"></div>
+
+    <script type="text/javascript">
+        var recognition = new webkitSpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+
+        recognition.onresult = function(event) {
+            var result = event.results[event.results.length - 1];
+            var text = result[0].transcript;
+
+            $('#result').text(text);
+        };
+
+        recognition.start();
+    </script>
+</body>
+</html>
